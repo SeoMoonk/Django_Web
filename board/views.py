@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Notice
 from django.urls import reverse
 
@@ -20,3 +20,7 @@ def add(request):
     notice.save()
 
     return redirect(reverse('board:index'))
+
+def view(request, article_id):
+    notice = get_object_or_404(Notice, pk=article_id)
+    return render(request, 'board/view.html', {'article':notice})

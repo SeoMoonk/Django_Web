@@ -50,7 +50,7 @@
                 <td width="5%">{{forloop.counter}}</td>
                 <td width="10%">{{article.write_id}}</td>
                 <td align="left" width="35%">
-                    <a class="cls1" href="">
+                    <a class="cls1" href="{% url 'board:view_article' article.id %}">
                         <span style="padding-right: 30px;">{{ article.title }}</span>
                     </a>
                 </td>
