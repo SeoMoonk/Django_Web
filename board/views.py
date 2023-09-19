@@ -37,3 +37,10 @@ def update(request, article_id):
         return redirect(reverse('board:view_article', args=(article_id,)))
     else :
         return render(request, 'board/index.html', {'article': notice})
+    
+
+def delete(request, article_id):
+    notice = Notice.objects.get(id=article_id)
+    notice.delete()
+
+    return redirect(reverse('board:index'))
