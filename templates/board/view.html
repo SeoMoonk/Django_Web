@@ -23,7 +23,7 @@
         }
 
         function fn_modify_article(frm) {
-            frm.action = "";
+            frm.action = "{% url 'board:update_article' article.id %}";
             frm.submit();
         }
 
@@ -43,7 +43,7 @@
 
         function fn_modify_cancel_v2(frm) {
 
-            frm.action = "";
+            frm.action = "{% url 'board:view_article' article.id %}";
             frm.submit();
 
         }

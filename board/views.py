@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Notice
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
@@ -24,3 +25,15 @@ def add(request):
 def view(request, article_id):
     notice = get_object_or_404(Notice, pk=article_id)
     return render(request, 'board/view.html', {'article':notice})
+
+def update(request, article_id):
+    notice = Notice.objects.get(id=article_id)
+
+    if request.method == 'POST' :
+        notice.title = request.POST['title']
+        notice.content = request.POST['content']
+        notice.write_date = timezone.datetime.now()
+        notice.save()
+        return redirect(reverse('board:view_article', args=(article_id,)))
+    else :
+        return render(request, 'board/index.html', {'article': notice})
